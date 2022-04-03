@@ -1,4 +1,4 @@
-import { Component, Input ,OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Observable, observable } from 'rxjs';
 import { InspectionApiService } from 'src/app/inspection-api.service';
 
@@ -12,18 +12,18 @@ import { InspectionApiService } from 'src/app/inspection-api.service';
 export class AddEditInspectionComponent implements OnInit {
 
 
-inspectionList$! : Observable<any[]>
-statusList$! : Observable<any[]>
-inspectionTypesList$! : Observable<any[]>
+  inspectionList$!: Observable<any[]>
+  statusList$!: Observable<any[]>
+  inspectionTypesList$!: Observable<any[]>
 
 
-  constructor( private service : InspectionApiService ) { }
-  
-  @Input() inspection:any;
+  constructor(private service: InspectionApiService) { }
+
+  @Input() inspection: any;
   id: number = 0;
-  status : string = "";
-  comments : string = "";
-  inspectionTypeId! : number;
+  status: string = "";
+  comments: string = "";
+  inspectionTypeId!: number;
 
   ngOnInit(): void {
     this.id = this.inspection.id;
@@ -36,56 +36,56 @@ inspectionTypesList$! : Observable<any[]>
 
   }
 
-  addInspection(){
+  addInspection() {
     var inspection = {
-      status : this.status,
-      Comments : this.comments,
-      inspectionTypeId : this.inspectionTypeId
+      status: this.status,
+      Comments: this.comments,
+      inspectionTypeId: this.inspectionTypeId
     }
-this.service.addInspection(inspection).subscribe(res=>{
-  var closeModalBtn = document.getElementById('add-edit-modal-close');
-  if(closeModalBtn){
-    closeModalBtn.click();
-  }
+    this.service.addInspection(inspection).subscribe(res => {
+      var closeModalBtn = document.getElementById('add-edit-modal-close');
+      if (closeModalBtn) {
+        closeModalBtn.click();
+      }
 
-  var showAddSuccess = document.getElementById('add-success-alert');
-  if(showAddSuccess){
-    showAddSuccess.style.display = "block";
-  }
-  setTimeout(() => {
-    if(showAddSuccess){
-      showAddSuccess.style.display = "none";
-    }
-  }, 3000);
+      var showAddSuccess = document.getElementById('add-success-alert');
+      if (showAddSuccess) {
+        showAddSuccess.style.display = "block";
+      }
+      setTimeout(() => {
+        if (showAddSuccess) {
+          showAddSuccess.style.display = "none";
+        }
+      }, 3000);
 
-})
+    })
 
   }
-  updateInspection(){
+  updateInspection() {
     var inspection = {
-      id : this.id,
-      status : this.status,
-      Comments : this.comments,
-      inspectionTypeId : this.inspectionTypeId
+      id: this.id,
+      status: this.status,
+      Comments: this.comments,
+      inspectionTypeId: this.inspectionTypeId
     }
-    var id : number = this.id;
-this.service.updateInspection(id,inspection).subscribe(res=>{
-  var closeModalBtn = document.getElementById('add-edit-modal-close');
-  if(closeModalBtn){
-    closeModalBtn.click();
-  }
+    var id: number = this.id;
+    this.service.updateInspection(id, inspection).subscribe(res => {
+      var closeModalBtn = document.getElementById('add-edit-modal-close');
+      if (closeModalBtn) {
+        closeModalBtn.click();
+      }
 
-  var showUpdateSuccess = document.getElementById('update-success-alert');
-  if(showUpdateSuccess){
-    showUpdateSuccess.style.display = "block";
-  }
-  setTimeout(() => {
-    if(showUpdateSuccess){
-      showUpdateSuccess.style.display = "none";
-    }
-  }, 4000);
+      var showUpdateSuccess = document.getElementById('update-success-alert');
+      if (showUpdateSuccess) {
+        showUpdateSuccess.style.display = "block";
+      }
+      setTimeout(() => {
+        if (showUpdateSuccess) {
+          showUpdateSuccess.style.display = "none";
+        }
+      }, 4000);
 
-})
+    })
 
   }
 

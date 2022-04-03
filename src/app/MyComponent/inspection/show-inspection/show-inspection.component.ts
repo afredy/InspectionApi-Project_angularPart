@@ -72,7 +72,7 @@ export class ShowInspectionComponent implements OnInit {
           if (showDeleteSuccess) {
             showDeleteSuccess.style.display = "none";
           }
-        }, 4000);
+        }, 3000);
         this.inspectionList$ = this.service.getInspectionList();
         //------------------------------
 
